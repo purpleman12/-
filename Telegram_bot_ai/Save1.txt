@@ -1,0 +1,31 @@
+import os
+from google.cloud import dialogflow_v2beta1 as dialogflow
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "D://Telegram_bot_ai/credentials2.0.json"
+project_id = "telegram-coctails-agent-h9ns"
+def detect_intent_text(project_id, session_id, text, language_code="ru"):
+    session_client = dialogflow.SessionsClient()
+    session = session_client.session_path(project_id, session_id)
+    text_input = dialogflow.TextInput(text=text, language_code=language_code)
+    query_input = dialogflow.QueryInput(text=text_input)
+    response = session_client.detect_intent(session=session, query_input=query_input)
+    print(f"Intent detected: {response.query_result.intent.display_name}")
+    print(f"Confidence: {response.query_result.intent_detection_confidence}")
+    print(f"Response: {response.query_result.fulfillment_text}")
+# if __name__ == "__main__":
+#     session_id = "some_unique_id"
+#     text_to_send = "текила"
+#     detect_intent_text(project_id, session_id, text_to_send)
+
+{
+  "type": "service_account",
+  "project_id": "telegram-coctails-agent-h9ns",
+  "private_key_id": "952ac5fbd04767cda5eddf93bf061e3f99027e03",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQDAwESBMlapQMZn\nOB1QZ8nsd4Es7LqNGha8hvr8eYwgMLBAtQBiIiNERaKEXj/IZ+CyNTOetBT3HQhB\nGOPj6aPeFhoWqiG5rAKGlVgcEbmY28XQH/2tgM2PMilPuON+7i2uetYRVShJOE6F\n8jC9e9iiY59a/t5JfAmy1rWYIeyS4e3CQ8lydahUoDOIvVsJn5nQ5LScvJZyx6oE\n3b/y+KZf489M73Kyzj2QsFx01QGC0CbyqpB27C0pCnnIkujVGBxew6xpfz2p7eRV\nX9jyoAjhOSmewB4QfCeVv2N+8AsHE7nl7xb8HRpwDRtmIhKn5mpKtAHIypw9xUUB\noot3Ip19AgMBAAECgf9wb7eGUIGSOYwtVI5vrhtxKkTampI3vQAw+TbEus0CpLmB\nBWnef2C9x+EFVfU0R2QgkD2MViqPUQrU7lqr7Z5T7pCep/UEWf0fL1Q2YMs4X6Wv\nF6Ti5j+tSEAmQQkeVyb5S1jpbhi8nXEwsWu9HIFCONq8OfAbmD9laISFj0RxE6lV\n+Hec+phuu1beNiYHWBJP6xUy4XZPAR/2jpiDpVYtiuji96GDPfI9wJLON9Aq9rCV\nZhH1As8FKIVkqLbmTEA6cPIddo38q84WFqPThx6xU4ZGEVYF9zo1rKrq5Yz5L93a\nTYHZZ8NEImIGbEl0D6bO0F05JUIfsQprwKdg2wECgYEA/uNvWMgEIL6NhVbGNkUt\nW3HZX0scAXxUgCpYQwfe16cENL4PaqyvqPBm+gzREaKirP2wZP7IhG1IVIMiO/HP\nmpHsDIhUs5IDaIboA0mMci//XVbvKNHOajqHv/tyt1VNUe/NWZIGmYy+95u+jPPV\njzOOi9QDn4DkqTvnADhXvOcCgYEAwZd166pAB3PMNuGXr8i+pKzGp/mwl37K/ejH\n9V4dfeGm4dKDtzN678w7apfNKX/9JillntwAD4mHgOWz61vVZFOn5ch3Gwk+RMs4\n4BelZSvjthvxoIRyc+mr2VsX8+rL0sAgjSdhdE7pBvImanycrQd9vL/nTf2I5d2D\n/Lw0gfsCgYAcOl/oey5J2hCeRb/p3rtpNzCVpyHQ4E4Ta50ev05kn7CNjsbyT3Gc\nyhL9elHlHBfcBLR2WukmEVxDT8qIzPzq52I2+Ro4UOFjwB0N0CVnt/0V/zy5TpMH\nnLfQAS7xMtc/Tcl2M//bHYVAstTlk1OBanpM7gwArCumumWY1qSQ3QKBgDQ+QY5l\nlX3tXBD7dEn17KzYC4xNL8DScMlwxnWK/n54JOcQPod0FxsbjHVJng4zAggIZ+ol\nCMcooC7CznkXgVDf2pGCNdJP/kPma+TdvL6+x2bfx6c/1vs89ilkEeS7WmH3g1FU\nbVJL8Ur0kjVuh4GSYfZL+4nqf8U4sGPGDo19AoGABvDURVnz1v0F5djRVW1t/PQz\nxcIztlYsx+BMcWFCFReFslw2xxeDL6FMvo+N6kRi5Lethm3V2a1eTDlq5XskuaFG\nDdk1328NvoXGqHBQY6GZeGZWNURObKC9Sdy84BJ3yPC9zi0Dah6R38vPepzffAMr\nqPiNfG+Nqz3gqeZG3Dg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "telegram-bot@telegram-coctails-agent-h9ns.iam.gserviceaccount.com",
+  "client_id": "111119747922222301310",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/telegram-bot%40telegram-coctails-agent-h9ns.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
